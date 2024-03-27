@@ -1,0 +1,41 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* form */
+.label {
+  @apply text-sm text-gray-500;
+}
+
+.input {
+  @apply block border-2 border-rose-700 rounded-lg py-3 px-4 mt-3;
+}
+
+.input-focus {
+  @apply focus:outline-none focus:ring-4 focus:ring-rose-300 focus:border-rose-500;
+}
+/* end of form */
+
+.effect-3 {
+  @apply transition ease-linear duration-300;
+}
+
+.btn {
+  @apply px-6 py-2 border-2 border-rose-700 rounded-lg text-black text-lg font-semibold;
+}
+
+.btn-hover {
+  @apply hover:bg-rose-700 hover:text-white;
+}
+
+.btn-reverse {
+  @apply px-6 py-2 border-2 bg-rose-700 rounded-lg text-white text-lg font-semibold;
+}
+
+.btn-reverse-hover {
+  @apply hover:bg-white hover:border-rose-700 hover:text-black;
+}
+
+.btn-focus {
+  @apply focus:outline-none focus:ring-4 focus:ring-rose-300 focus:border-rose-500;
+}
