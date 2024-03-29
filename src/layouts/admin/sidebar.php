@@ -1,30 +1,40 @@
-<aside class="fixed top-0 left-0 z-40 lg:w-64 h-screen bg-slate-800 text-white overflow-hidden">
+<aside id="sidebar" class="transition ease-linear duration-1000 lg:fixed md:fixed top-0 lg:left-0 md:left-0 sm:absolute sm:-left-96 z-40 lg:w-64 md:w-48 sm:w-64 lg:h-[calc(100vh-24px)] md:h-[calc(100vh-12px)] sm:h-screen bg-slate-800 text-white overflow-hidden lg:my-3 lg:ms-2 md:ms-2 md:my-3 sm:m-0">
 
     <!-- logo -->
-    <div class="flex items-center border-b ms-5 me-5 border-gray-400 h-16">
-        <svg class="w-10" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" viewBox="0 0 64 64" fill="#b91c1c" stroke-width="2" stroke="currentColor">
-            <g>
+    <div class="flex justify-between items-center border-b ms-5 me-5 border-gray-400 h-16">
+        <div class="flex items-center">
+            <svg class="w-10" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" viewBox="0 0 64 64" fill="#b91c1c" stroke-width="2" stroke="currentColor">
                 <g>
-                    <path class="text-rose-700" d="M56.846,32.677c0.297-1.558,0.447-3.11,0.447-4.632C57.293,14.097,45.946,2.75,32,2.75S6.707,14.097,6.707,28.044    c0,1.521,0.15,3.074,0.446,4.632c-4.362,3.076-6.746,6.932-6.746,10.97C0.407,53.518,14.284,61.25,32,61.25    s31.593-7.732,31.593-17.604C63.593,39.608,61.209,35.752,56.846,32.677z M32,57.25c-14.957,0-27.593-6.229-27.593-13.604    c0-2.959,2.148-5.929,6.05-8.363c0.733-0.458,1.09-1.335,0.884-2.174c-0.421-1.71-0.634-3.414-0.634-5.065    C10.707,16.303,20.259,6.75,32,6.75s21.293,9.553,21.293,21.294c0,1.652-0.214,3.356-0.635,5.064    c-0.206,0.84,0.15,1.718,0.884,2.175c3.902,2.434,6.051,5.404,6.051,8.363C59.593,51.021,46.957,57.25,32,57.25z"></path>
-                    <path class="text-rose-700" d="M47.358,42.849c0-2.175-1.189-5.191-3.097-7.965c0.437-0.841,0.663-1.73,0.663-2.63c0-4.8-6.16-9.172-12.925-9.172    s-12.925,4.372-12.925,9.172c0,0.899,0.227,1.79,0.664,2.63c-1.908,2.773-3.098,5.79-3.098,7.965c0,0.469-0.041,0.956-0.08,1.449    c-0.153,1.92-0.363,4.549,1.595,6.669c2.203,2.386,6.473,3.449,13.844,3.449c7.37,0,11.64-1.063,13.843-3.449    c1.958-2.121,1.749-4.75,1.596-6.67C47.399,43.804,47.358,43.317,47.358,42.849z M42.904,48.253    C41.993,49.24,39.361,50.416,32,50.416c-7.362,0-9.994-1.176-10.905-2.163c-0.732-0.793-0.685-1.899-0.546-3.638    c0.046-0.574,0.093-1.167,0.093-1.767c0-1.349,1.069-4.076,3.113-6.677c0.592-0.753,0.567-1.819-0.059-2.543    c-0.412-0.477-0.621-0.939-0.621-1.375c0-2.035,3.832-5.172,8.925-5.172s8.925,3.138,8.925,5.172c0,0.436-0.209,0.898-0.62,1.375    c-0.625,0.724-0.65,1.791-0.06,2.543c2.044,2.602,3.113,5.329,3.113,6.678c0,0.6,0.047,1.192,0.093,1.766    C43.59,46.354,43.638,47.459,42.904,48.253z"></path>
-                    <path class="text-rose-700" d="M16.111,23.435c-3.225,0-3.225,5,0,5S19.336,23.435,16.111,23.435z"></path>
-                    <path class="text-rose-700" d="M47.889,23.435c-3.225,0-3.225,5,0,5S51.113,23.435,47.889,23.435z"></path>
+                    <g>
+                        <path class="text-rose-700" d="M56.846,32.677c0.297-1.558,0.447-3.11,0.447-4.632C57.293,14.097,45.946,2.75,32,2.75S6.707,14.097,6.707,28.044    c0,1.521,0.15,3.074,0.446,4.632c-4.362,3.076-6.746,6.932-6.746,10.97C0.407,53.518,14.284,61.25,32,61.25    s31.593-7.732,31.593-17.604C63.593,39.608,61.209,35.752,56.846,32.677z M32,57.25c-14.957,0-27.593-6.229-27.593-13.604    c0-2.959,2.148-5.929,6.05-8.363c0.733-0.458,1.09-1.335,0.884-2.174c-0.421-1.71-0.634-3.414-0.634-5.065    C10.707,16.303,20.259,6.75,32,6.75s21.293,9.553,21.293,21.294c0,1.652-0.214,3.356-0.635,5.064    c-0.206,0.84,0.15,1.718,0.884,2.175c3.902,2.434,6.051,5.404,6.051,8.363C59.593,51.021,46.957,57.25,32,57.25z"></path>
+                        <path class="text-rose-700" d="M47.358,42.849c0-2.175-1.189-5.191-3.097-7.965c0.437-0.841,0.663-1.73,0.663-2.63c0-4.8-6.16-9.172-12.925-9.172    s-12.925,4.372-12.925,9.172c0,0.899,0.227,1.79,0.664,2.63c-1.908,2.773-3.098,5.79-3.098,7.965c0,0.469-0.041,0.956-0.08,1.449    c-0.153,1.92-0.363,4.549,1.595,6.669c2.203,2.386,6.473,3.449,13.844,3.449c7.37,0,11.64-1.063,13.843-3.449    c1.958-2.121,1.749-4.75,1.596-6.67C47.399,43.804,47.358,43.317,47.358,42.849z M42.904,48.253    C41.993,49.24,39.361,50.416,32,50.416c-7.362,0-9.994-1.176-10.905-2.163c-0.732-0.793-0.685-1.899-0.546-3.638    c0.046-0.574,0.093-1.167,0.093-1.767c0-1.349,1.069-4.076,3.113-6.677c0.592-0.753,0.567-1.819-0.059-2.543    c-0.412-0.477-0.621-0.939-0.621-1.375c0-2.035,3.832-5.172,8.925-5.172s8.925,3.138,8.925,5.172c0,0.436-0.209,0.898-0.62,1.375    c-0.625,0.724-0.65,1.791-0.06,2.543c2.044,2.602,3.113,5.329,3.113,6.678c0,0.6,0.047,1.192,0.093,1.766    C43.59,46.354,43.638,47.459,42.904,48.253z"></path>
+                        <path class="text-rose-700" d="M16.111,23.435c-3.225,0-3.225,5,0,5S19.336,23.435,16.111,23.435z"></path>
+                        <path class="text-rose-700" d="M47.889,23.435c-3.225,0-3.225,5,0,5S51.113,23.435,47.889,23.435z"></path>
+                    </g>
                 </g>
-            </g>
-        </svg>
-        <span class="ms-3 text-xl font-semibold text-white">FUTU</span>
+            </svg>
+            <span class="ms-3 text-xl font-semibold text-white">FUTU</span>
+        </div>
+        <div id="close" class="hidden lg:hidden md:hidden sm:block cursor-pointer">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 text-lg font-bold text-white">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" />
+            </svg>
+
+        </div>
     </div>
 
     <!-- dashboard tabs -->
     <ul class="w-full h-full">
         <!-- dashboard button dropdown -->
-        <li class="mt-8 mb-3 flex items-center cursor-pointer hover:text-rose-700">
-            <svg xmlns="http://www.w3.org/2000/svg" class="ms-5 h-6 w-6 text-lg me-3 text-rose-700" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" d="m2.25 12 8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25" />
-            </svg>
-            <span class="text-md">
-                Dashboard
-            </span>
+        <li>
+            <a href="../" class="mt-8 mb-3 flex items-center cursor-pointer hover:text-rose-700">
+                <svg xmlns="http://www.w3.org/2000/svg" class="ms-5 h-6 w-6 text-lg me-3 text-rose-700" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="m2.25 12 8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25" />
+                </svg>
+                <span class="text-md">
+                    Dashboard
+                </span>
+            </a>
         </li>
 
         <!-- birthday wishes -->
@@ -81,19 +91,27 @@
         <div id="category-menu" class="z-10 hidden bg-slate-800 divide-y mb-5 divide-gray-100  w-60 dark:bg-gray-700">
             <ul class="py-2 text-white dark:text-gray-200">
                 <li>
-                    <a href="../admin/addCategory.php" class="flex items-center text-md ms-8 px-4 py-3 hover:text-rose-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
+                    <a href="../categories/addCategory.php" class="flex items-center text-md ms-8 px-4 py-3 hover:text-rose-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 me-3 text-lg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M9 13h6m-3-3v6m-9 1V7a2 2 0 012-2h6l2 2h6a2 2 0 012 2v8a2 2 0 01-2 2H5a2 2 0 01-2-2z" />
                         </svg>
                         Add Category</a>
                 </li>
                 <li>
-                    <a href="../admin/addSubCategory.php" class="flex items-center text-md ms-8 px-4 py-3 hover:text-rose-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
+                    <a href="../subcategories/addSubCategory.php" class="flex items-center text-md ms-8 px-4 py-3 hover:text-rose-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="h-6 w-6 me-3 text-lg">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 7.125C2.25 6.504 2.754 6 3.375 6h6c.621 0 1.125.504 1.125 1.125v3.75c0 .621-.504 1.125-1.125 1.125h-6a1.125 1.125 0 0 1-1.125-1.125v-3.75ZM14.25 8.625c0-.621.504-1.125 1.125-1.125h5.25c.621 0 1.125.504 1.125 1.125v8.25c0 .621-.504 1.125-1.125 1.125h-5.25a1.125 1.125 0 0 1-1.125-1.125v-8.25ZM3.75 16.125c0-.621.504-1.125 1.125-1.125h5.25c.621 0 1.125.504 1.125 1.125v2.25c0 .621-.504 1.125-1.125 1.125h-5.25a1.125 1.125 0 0 1-1.125-1.125v-2.25Z" />
                         </svg>
 
                         Add SubCategory</a>
+                </li>
+                <li>
+                    <a href="../features/addFeature.php" class="flex items-center text-md ms-8 px-4 py-3 hover:text-rose-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="h-6 w-6 me-3 text-lg">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M4.098 19.902a3.75 3.75 0 0 0 5.304 0l6.401-6.402M6.75 21A3.75 3.75 0 0 1 3 17.25V4.125C3 3.504 3.504 3 4.125 3h5.25c.621 0 1.125.504 1.125 1.125v4.072M6.75 21a3.75 3.75 0 0 0 3.75-3.75V8.197M6.75 21h13.125c.621 0 1.125-.504 1.125-1.125v-5.25c0-.621-.504-1.125-1.125-1.125h-4.072M10.5 8.197l2.88-2.88c.438-.439 1.15-.439 1.59 0l3.712 3.713c.44.44.44 1.152 0 1.59l-2.879 2.88M6.75 17.25h.008v.008H6.75v-.008Z" />
+                        </svg>
+
+                        Add Feature</a>
                 </li>
             </ul>
         </div>
@@ -115,7 +133,7 @@
         <div id="product-menu" class="z-10 hidden bg-slate-800 divide-y mb-5 divide-gray-100  w-60 dark:bg-gray-700">
             <ul class="py-2 text-white dark:text-gray-200">
                 <li>
-                    <a href="../admin/addProduct.php" class="flex items-center text-md ms-8 px-4 py-3 hover:text-rose-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
+                    <a href="../products/addProduct.php" class="flex items-center text-md ms-8 px-4 py-3 hover:text-rose-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 me-3 text-lg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
                         </svg>

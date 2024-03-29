@@ -1,6 +1,6 @@
 <?php
 
-include_once "../includes/db.php";
+include_once "../../includes/db.php";
 
 class Category
 {
@@ -58,6 +58,18 @@ class Category
 
     # Subcategory  
 
+    // get all subcategory
+    public function getAllSubCategory()
+    {
+        $this->con = Database::connect();
+        $sql = "SELECT * FROM sub_categories";
+        $this->statement = $this->con->prepare($sql);
+        if ($this->statement->execute()) {
+            $results = $this->statement->fetchAll(PDO::FETCH_ASSOC);
+            return $results;
+        }
+    }
+
     // put subcategory into database
     public function putSubCategory($subcategory, $category_id)
     {
@@ -91,6 +103,20 @@ class Category
         $this->statement->bindParam(":subcategory", $subcategory);
         if ($this->statement->execute()) {
             $results = $this->statement->fetch(PDO::FETCH_ASSOC);
+            return $results;
+        }
+    }
+
+    // get subcategory by category
+    public function getSubcategoriesByCategory($id)
+    {
+        $this->con = Database::connect();
+        $sql = "SELECT * FROM sub_categories WHERE category_id IN 
+                (SELECT id FROM categories WHERE id = :id)";
+        $this->statement = $this->con->prepare($sql);
+        $this->statement->bindParam(":id", $id);
+        if ($this->statement->execute()) {
+            $results = $this->statement->fetchAll(PDO::FETCH_ASSOC);
             return $results;
         }
     }

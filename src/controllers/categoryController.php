@@ -1,6 +1,6 @@
 <?php
 
-include_once "../models/category.php";
+include_once "../../models/category.php";
 
 class CategoryController
 {
@@ -50,5 +50,17 @@ class CategoryController
     public function getSubCategoryValid($subcategory)
     {
         return $this->category->getSubCategoryValid($subcategory);
+    }
+
+    // get all subcategory
+    public function getAllSubCategory()
+    {
+        return $this->category->getAllSubCategory();
+    }
+
+    // joining two tables
+    public function getSubcategoriesByCategory($id)
+    {
+        return $this->category->getSubcategoriesByCategory($id);
     }
 }

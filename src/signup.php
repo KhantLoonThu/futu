@@ -1,8 +1,7 @@
 <?php
-
-include_once "./controllers/userController.php";
-
-// $usercontroller = new UserController();
+session_start();
+include_once "./user_controllers/customerController.php";
+$customer_controller = new CustomerController();
 
 // Form Validating
 if (isset($_POST['register'])) {
@@ -37,17 +36,56 @@ if (isset($_POST['register'])) {
         $error = true;
         $c_password_error = "Please fill your confirm password";
     }
+    // address
+    if (!empty($_POST['address'])) {
+        $address = trim(strtolower($_POST['address']));
+    } else {
+        $error = true;
+        $address_error = "Please enter your address";
+    }
+    // birthdate
+    if (!empty($_POST['birthdate'])) {
+        $birthdate = trim(strtolower($_POST['birthdate']));
+    } else {
+        $error = true;
+        $birthdate_error = "Please enter your birthdate";
+    }
+
+    // profile picture
+    if (!empty($_FILES['profilepicture'])) {
+        print_r($_FILES);
+        $filename = $_FILES['profilepicture']['name'];
+        $filetmp = $_FILES['profilepicture']['tmp_name'];
+        $ferror = $_FILES['profilepicture']['error'];
+        $fsize = $_FILES['profilepicture']['size'];
+
+        $types = ['jpeg', 'jpg', 'svg', 'png', 'docs', 'webp'];
+        $ext = explode(".", $filename);
+        $extension = end($ext);
+        $fname = time() . $filename;
+
+        if ($ferror == 0) {
+            if (in_array($extension, $types)) {
+                if ($fsize < 2000000) {
+                    move_uploaded_file($filetmp, "../public/images/users/" . $fname);
+                }
+            }
+        }
+    }
 
     if (!$error) {
         if (!($password == $c_password)) {
             $unmatchPassword = "Unmatch Password! Please enter the password again!";
         } else {
             $unmatchPassword = '';
-            $alreadyExist = $usercontroller->getUserValid($email);
-            if ($alreadyExist['total'] > 0) {
+            // $alreadyExist = $usercontroller->getUserValid($email);
+            $valid = $customer_controller->getCustomerValid($email);
+            if ($valid['total'] > 0) {
                 echo "<script> alert('user already exist') </script>";
             } else {
-                $usercontroller->putUser($username, $email, $password);
+                // $usercontroller->putUser($username, $email, $password);
+                $_SESSION['email'] = $email;
+                $customer_controller->putCustomer($username, $email, $password, $address, $fname, $birthdate);
                 header('location:user/index.php');
                 exit();
             }
@@ -77,8 +115,8 @@ if (isset($_POST['register'])) {
 
 <body class="bg-gray-100">
 
-    <section class="flex justify-center items-center w-full h-screen mb-16">
-        <div class="mt-16 max-w-xl w-full mx-auto border border-emerald-700 rounded-2xl px-12 py-12 shadow-zinc-400 shadow-lg bg-white">
+    <section class="flex justify-center items-center  w-full h-screen my-12">
+        <div class="w-[calc(100%-40%)]  mx-auto border border-emerald-700 rounded-2xl px-12 py-12 shadow-zinc-400 shadow-lg bg-white">
             <div class="login-header flex justify-between items-center border-b border-gray-400 pb-8">
                 <div class="flex items-center">
                     <img src="../public/images/duck.svg" class="w-10" alt="duck_kitkit">
@@ -97,34 +135,58 @@ if (isset($_POST['register'])) {
             <?php endif ?>
 
             <div class="login-body mt-8">
-                <form method="post" class="mb-3">
-                    <div class="my-3">
-                        <label for="name" class="label">Enter Username *</label>
-                        <input class="input input-focus effect-3" type="text" name="username" id="name" value="<?php if (isset($username)) echo $username ?>">
-                        <span class="text-red-600 mt-3 text-lg font-semibold">
-                            <?php if (isset($name_error)) echo $name_error ?>
-                        </span>
-                    </div>
-                    <div class="my-3">
-                        <label for="email" class="label">Enter email *</label>
-                        <input class="input input-focus effect-3" type="email" name="email" id="email" value="<?php if (isset($email)) echo $email ?>">
-                        <span class="text-red-600 mt-3 text-lg font-semibold">
-                            <?php if (isset($email_error)) echo $email_error ?>
-                        </span>
-                    </div>
-                    <div class="my-3">
-                        <label for="password" class="label">Enter Password *</label>
-                        <input class="input input-focus effect-3" type="password" name="password" id="password" value="<?php if (isset($password)) echo $password ?>">
-                        <span class="text-red-600 mt-3 text-lg font-semibold">
-                            <?php if (isset($password_error)) echo $password_error ?>
-                        </span>
-                    </div>
-                    <div class="my-3">
-                        <label for="c_password" class="label">Confirm Password *</label>
-                        <input class="input input-focus effect-3" type="password" name="c_password" id="c_password" value="<?php if (isset($c_password)) echo $c_password ?>">
-                        <span class="text-red-600 mt-3 text-lg font-semibold">
-                            <?php if (isset($c_password_error)) echo $c_password_error ?>
-                        </span>
+                <form method="post" class="mb-3" enctype="multipart/form-data">
+                    <div class="flex gap-5">
+                        <div class="w-full">
+                            <div class="my-3">
+                                <label for="name" class="label">Enter Username *</label>
+                                <input class="input input-focus effect-3 w-full" type="text" name="username" id="name" value="<?php if (isset($username)) echo $username ?>">
+                                <span class="text-red-600 mt-3 text-lg font-semibold">
+                                    <?php if (isset($name_error)) echo $name_error ?>
+                                </span>
+                            </div>
+                            <div class="my-3">
+                                <label for="email" class="label">Enter email *</label>
+                                <input class="input input-focus effect-3 w-full" type="email" name="email" id="email" value="<?php if (isset($email)) echo $email ?>">
+                                <span class="text-red-600 mt-3 text-lg font-semibold">
+                                    <?php if (isset($email_error)) echo $email_error ?>
+                                </span>
+                            </div>
+                            <div class="my-3">
+                                <label for="password" class="label">Enter Password *</label>
+                                <input class="input input-focus effect-3 w-full" type="password" name="password" id="password" value="<?php if (isset($password)) echo $password ?>">
+                                <span class="text-red-600 mt-3 text-lg font-semibold">
+                                    <?php if (isset($password_error)) echo $password_error ?>
+                                </span>
+                            </div>
+                            <div class="my-3">
+                                <label for="c_password" class="label">Confirm Password *</label>
+                                <input class="input input-focus effect-3 w-full" type="password" name="c_password" id="c_password" value="<?php if (isset($c_password)) echo $c_password ?>">
+                                <span class="text-red-600 mt-3 text-lg font-semibold">
+                                    <?php if (isset($c_password_error)) echo $c_password_error ?>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="w-full">
+                            <div class="my-3">
+                                <label for="address" class="label">Enter Address *</label>
+                                <input class="input input-focus effect-3 w-full" type="text" name="address" id="address" value="<?php if (isset($address)) echo $address ?>">
+                                <span class="text-red-600 mt-3 text-lg font-semibold">
+                                    <?php if (isset($address_error)) echo $address_error ?>
+                                </span>
+                            </div>
+                            <div class="my-3">
+                                <label for="birthdate" class="label">Your Birthdate *</label>
+                                <input class="input input-focus effect-3 w-full" type="date" name="birthdate" id="birthdate">
+                                <span class=" text-red-600 mt-3 text-lg font-semibold">
+                                    <?php if (isset($birthdate_error)) echo $birthdate_error ?>
+                                </span>
+                            </div>
+                            <div class="my-3">
+                                <label for="profilepicture" class="label">Your Profile Picture *</label>
+                                <input class="input input-focus effect-3 w-full" type="file" name="profilepicture" id="profilepicture">
+                            </div>
+                        </div>
                     </div>
                     <div class="mt-8 flex lg:flex-row md:flex-row sm:flex-col justify-between items-center">
                         <span class="label">

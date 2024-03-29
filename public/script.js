@@ -63,3 +63,23 @@ function customersDropdown() {
         customersMenu.classList.remove('h-24');
     }
 }
+
+const toggle = doc.querySelector("#toggle-btn");
+const sidebar = doc.querySelector("#sidebar");
+const close = doc.querySelector("#close");
+toggle.addEventListener('click', toggleNavbar);
+close.addEventListener('click', closeNavbar);
+
+function toggleNavbar() {
+    if (sidebar.classList.contains('sm:-left-96')) {
+        sidebar.classList.remove("sm:-left-96");
+        sidebar.classList.add("sm:left-0");
+    }
+}
+
+function closeNavbar() {
+    if (sidebar.classList.contains("sm:left-0")) {
+        sidebar.classList.remove("sm:left-0");
+        sidebar.classList.add("sm:-left-96");
+    }
+}

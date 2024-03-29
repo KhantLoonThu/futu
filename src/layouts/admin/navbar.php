@@ -1,4 +1,9 @@
-<nav class="flex items-center justify-between bg-white h-16 px-4">
+<nav class="flex items-center justify-between bg-white h-16 px-4 lg:ms-5 lg:me-3 lg:mt-3 md:ms-5 md:me-3 md:mt-3 sm:m-0">
+    <div id="toggle-btn" class="cursor-pointer hidden lg:hidden md:hidden sm:flex items-center bg-gray-300 p-3 rounded-full">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 font-bold">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 6h9.75M10.5 6a1.5 1.5 0 1 1-3 0m3 0a1.5 1.5 0 1 0-3 0M3.75 6H7.5m3 12h9.75m-9.75 0a1.5 1.5 0 0 1-3 0m3 0a1.5 1.5 0 0 0-3 0m-3.75 0H7.5m9-6h3.75m-3.75 0a1.5 1.5 0 0 1-3 0m3 0a1.5 1.5 0 0 0-3 0m-9.75 0h9.75" />
+        </svg>
+    </div>
     <div>
         <h2 class="text-gray-400 font-semibold">Admin Dashboard</h2>
     </div>
