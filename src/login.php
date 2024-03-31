@@ -1,6 +1,39 @@
 <?php
+session_start();
 
+include_once "./user_controllers/customerController.php";
+$customer_controller = new CustomerController();
 
+if (isset($_POST['login'])) {
+    $error = false;
+    // email
+    if (!empty($_POST['email'])) {
+        $email = $_POST['email'];
+    } else {
+        $error = true;
+        $email_error = "Please Enter Your Email";
+    }
+
+    // password
+    if (!empty($_POST['password'])) {
+        $password = $_POST['password'];
+    } else {
+        $error = true;
+        $password_error = "Please Enter Your Password";
+    }
+
+    if ($error == false) {
+        $currentUser = $customer_controller->getCustomer($email);
+        if ($currentUser['password'] !== $password or $currentUser['email'] !== $email) {
+            $password_error = "Incorrect Password or Email";
+        } else {
+            $_SESSION['email'] = $email;
+            $password_error = "";
+            header("location:index.php");
+            exit();
+        }
+    }
+}
 
 ?>
 
@@ -31,14 +64,29 @@
 
             <!-- form body -->
             <div class="login-body mt-8">
-                <form action="" class="mb-3">
+                <div class="my-10 rounded-lg w-full bg-red-400">
+                    <span>
+                        <?php
+                        if (isset($password_error) and $password_error == "Incorrect Password or Email") {
+                            echo $password_error;
+                        }
+                        ?>
+                    </span>
+                </div>
+                <form action="" class="mb-3" method="post">
                     <div class="my-3">
-                        <label for="name" class="label">Enter Username or Email</label>
-                        <input class="input input-focus effect-3" type="text" name="username" id="name">
+                        <label for="name" class="label">Enter Email</label>
+                        <input class="input input-focus effect-3 w-full" type="text" name="email" id="name">
+                        <span class="text-red-700 py-3 mt-3 text-lg">
+                            <?php if (isset($email_error)) echo $email_error ?>
+                        </span>
                     </div>
                     <div class="my-3">
                         <label for="password" class="label">Enter Password</label>
-                        <input class="input input-focus effect-3" type="password" name="password" id="password">
+                        <input class="input input-focus effect-3 w-full" type="password" name="password" id="password">
+                        <span class="text-red-700 py-3 mt-3 text-lg">
+                            <?php if (isset($password_error) and $password_error == "Please Enter Your Password") echo $password_error ?>
+                        </span>
                     </div>
                     <div class="mt-8 flex lg:flex-row md:flex-row sm:flex-col justify-between items-center">
                         <span class="label">

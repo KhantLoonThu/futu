@@ -46,7 +46,7 @@ $categories = $category_controller->getAllCategory();
 <body>
 
 
-    <main class="flex w-full h-screen bg-gray-300">
+    <main class="flex w-full h-screen overflow-y-auto bg-gray-300">
         <!-- sidebar -->
         <?php include_once "../../layouts/admin/sidebar.php";
         ?>

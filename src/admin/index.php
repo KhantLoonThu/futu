@@ -12,7 +12,7 @@
 
 <body>
 
-    <main class="flex w-full h-screen bg-gray-300">
+    <main class="flex w-full h-screen bg-gray-300 overflow-y-auto">
         <!-- sidebar -->
         <aside id="sidebar" class="transition ease-linear duration-1000 lg:fixed md:fixed top-0 lg:left-0 md:left-0 sm:absolute sm:-left-96 z-40 lg:w-64 md:w-48 sm:w-64 lg:h-[calc(100vh-24px)] md:h-[calc(100vh-12px)] sm:h-screen bg-slate-800 text-white overflow-hidden lg:my-3 lg:ms-2 md:ms-2 md:my-3 sm:m-0">
 

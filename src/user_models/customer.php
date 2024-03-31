@@ -48,12 +48,12 @@ class Customer
     }
 
     // for individual Customer
-    public function getCustomer($Customer)
+    public function getCustomer($email)
     {
         $this->con = Database::connect();
-        $sql = "SELECT * FROM customers WHERE name = :Customer";
+        $sql = "SELECT * FROM customers WHERE email = :email";
         $this->statement = $this->con->prepare($sql);
-        $this->statement->bindParam(":Customer", $Customer);
+        $this->statement->bindParam(":email", $email);
         if ($this->statement->execute()) {
             $results = $this->statement->fetch(PDO::FETCH_ASSOC);
             return $results;

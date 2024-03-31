@@ -63,4 +63,10 @@ class CategoryController
     {
         return $this->category->getSubcategoriesByCategory($id);
     }
+
+    // For Table
+    public function getAllSubCategoryAndCategory()
+    {
+        return $this->category->getAllSubCategoryAndCategory();
+    }
 }

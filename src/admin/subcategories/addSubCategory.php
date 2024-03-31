@@ -38,6 +38,7 @@ if (isset($_POST['add'])) {
 }
 
 $categories = $category_controller->getAllCategory();
+$subcategories = $category_controller->getAllSubCategoryAndCategory();
 
 ?>
 
@@ -56,7 +57,7 @@ $categories = $category_controller->getAllCategory();
 <body>
 
 
-    <main class="flex w-full h-screen bg-gray-300">
+    <main class="flex w-full h-screen overflow-y-auto bg-gray-300">
         <!-- sidebar -->
         <?php include_once "../../layouts/admin/sidebar.php";
         ?>
@@ -66,7 +67,7 @@ $categories = $category_controller->getAllCategory();
             <?php include_once "../../layouts/admin/navbar.php"; ?>
 
             <!-- main -->
-            <div class="mt-10 p-8 lg:ms-5 lg:me-3 lg:mt-3 md:ms-5 md:me-3 md:mt-3 sm:mt-3 sm:mx-3 sm:m-0 bg-white rounded-2xl">
+            <div class="mt-10 p-8 lg:ms-5 lg:me-3 lg:mt-3 md:ms-5 md:me-3 md:mt-3 sm:mt-3 sm:mx-3 sm:m-0 bg-white">
                 <h2 class="text-4xl font-semibold text-rose-700">Subcategories</h2>
                 <form method="post" class="mt-5">
                     <div class="mt-5">
@@ -89,6 +90,33 @@ $categories = $category_controller->getAllCategory();
                     </div>
                 </form>
             </div>
+
+            <div class="mt-10 p-8 lg:ms-5 lg:me-3 lg:mt-3 md:ms-5 md:me-3 md:mt-3 sm:mt-3 sm:mx-3 sm:m-0 bg-white">
+                <table class="min-w-full border border-gray-200 divide-y divide-gray-200">
+                    <thead class="bg-gray-50">
+                        <tr>
+                            <th class="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase">No</th>
+                            <th class="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase">Subcategory Name</th>
+                            <th class="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase">Category Name</th>
+                            <th class="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody class="bg-white divide-y divide-gray-200">
+                        <?php foreach ($subcategories as $cate) : ?>
+                            <tr>
+                                <td class="px-4 py-2 whitespace-nowrap"><?= $cate['id'] ?></td>
+                                <td class="px-4 py-2 whitespace-nowrap"><?= $cate['name'] ?></td>
+                                <td class="px-4 py-2 whitespace-nowrap"><?= $cate['category_name'] ?></td>
+                                <td class="px-4 py-2 whitespace-nowrap">
+                                    <button class="text-indigo-600 hover:text-indigo-900">Edit</button>
+                                    <button class="text-red-600 hover:text-red-900">Delete</button>
+                                </td>
+                            </tr>
+                        <?php endforeach ?>
+                    </tbody>
+                </table>
+            </div>
+
         </section>
 
     </main>

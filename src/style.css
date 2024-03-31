@@ -39,3 +39,38 @@
 .btn-focus {
   @apply focus:outline-none focus:ring-4 focus:ring-rose-300 focus:border-rose-500;
 }
+
+/* user page navbar effect */
+li:hover span {
+  width: 100%;
+}
+
+.right-hide {
+  right: -33.33%;
+}
+
+.right-show {
+  right: 0px;
+}
+
+.header {
+  background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
+    url("../public/cart.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+
+.user-btn {
+  @apply px-6 py-2 rounded-lg text-lg;
+}
+
+.instagram {
+  /* Apply gradient background to text */
+  background-image: linear-gradient(to right, #8a3ab9, #cd486b);
+  /* Set text color to transparent to allow gradient to show through */
+  -webkit-background-clip: text;
+  background-clip: text;
+  /* Ensure text remains visible on browsers that don't support background-clip */
+  color: transparent;
+}

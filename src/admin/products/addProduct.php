@@ -78,6 +78,8 @@ if (isset($_POST['add'])) {
 
         if ($valid['total'] == 0) {
             $product_controller->putProduct($name, $price, $fname, $description, $category, $subcategory);
+            $name = "";
+            $price = "";
             echo "<script> alert('product successfully added') </script>";
         } else {
             echo "<script> alert('product already exist') </script>";
@@ -116,7 +118,7 @@ $subcategories_array = $category_controller->getAllSubCategory();
 <body>
 
 
-    <main class="flex w-full h-screen bg-gray-200">
+    <main class="flex w-full h-screen overflow-y-auto bg-gray-200">
         <!-- sidebar -->
         <?php include_once "../../layouts/admin/sidebar.php";
         ?>

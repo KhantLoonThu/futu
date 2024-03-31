@@ -67,6 +67,7 @@ if (isset($_POST['register'])) {
         if ($ferror == 0) {
             if (in_array($extension, $types)) {
                 if ($fsize < 2000000) {
+                    $fname = uniqid() . "." . $extension;
                     move_uploaded_file($filetmp, "../public/images/users/" . $fname);
                 }
             }
@@ -86,7 +87,7 @@ if (isset($_POST['register'])) {
                 // $usercontroller->putUser($username, $email, $password);
                 $_SESSION['email'] = $email;
                 $customer_controller->putCustomer($username, $email, $password, $address, $fname, $birthdate);
-                header('location:user/index.php');
+                header('location:index.php');
                 exit();
             }
         }

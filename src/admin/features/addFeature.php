@@ -45,7 +45,7 @@ if (isset($_POST['add'])) {
 <body>
 
 
-    <main class="flex w-full h-screen bg-gray-300">
+    <main class="flex w-full h-screen overflow-y-auto bg-gray-300">
         <!-- sidebar -->
         <?php include_once "../../layouts/admin/sidebar.php";
         ?>
@@ -55,7 +55,7 @@ if (isset($_POST['add'])) {
             <?php include_once "../../layouts/admin/navbar.php"; ?>
 
             <!-- main -->
-            <div class="mt-10 lg:ms-5 lg:me-3 lg:mt-3 md:ms-5 md:me-3 md:mt-3 sm:mx-3 sm:mt-3 sm:m-0 p-8 bg-white rounded-2xl">
+            <div class="mt-10 lg:ms-5 lg:me-3 lg:mt-3 md:ms-5 md:me-3 md:mt-3 sm:mx-3 sm:mt-3 sm:m-0 p-8 bg-white">
                 <h2 class="text-4xl font-semibold text-rose-700">Features</h2>
                 <form method="post" class="mt-5">
                     <div class="mt-5">

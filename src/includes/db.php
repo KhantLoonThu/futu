@@ -6,7 +6,7 @@ class Database
 
     public static function connect()
     {
-        return self::$connection = new PDO("mysql:host=localhost;dbname=user_db;", "root", "");
+        return self::$connection = new PDO("mysql:host=localhost;dbname=futu;", "root", "");
     }
 
     public static function disconnect()
