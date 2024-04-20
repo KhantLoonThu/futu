@@ -4,7 +4,7 @@ use User\Controller\Customer\CustomerController;
 
 session_start();
 
-include_once __DIR__ . "./user_controllers/customerController.php";
+include_once __DIR__ . "/user_controllers/customerController.php";
 
 // include_once ._DIR_. "./user_controllers/customerController.php";
 $customer_controller = new CustomerController();
