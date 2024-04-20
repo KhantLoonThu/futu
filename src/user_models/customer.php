@@ -1,6 +1,8 @@
 <?php
 
-include_once "./includes/db.php";
+namespace User\Model\Customer;
+
+use Include\Database as Database;
 
 class Customer
 {
@@ -10,11 +12,11 @@ class Customer
     // get all Customer 
     public function getAllCustomer()
     {
-        $this->con = Database::connect();
+        $this->con = Database\Database::connect();
         $sql = "SELECT * FROM customers";
         $this->statement = $this->con->prepare($sql);
         if ($this->statement->execute()) {
-            $results = $this->statement->fetchAll(PDO::FETCH_ASSOC);
+            $results = $this->statement->fetchAll(\PDO::FETCH_ASSOC);
             return $results;
         }
     }
@@ -22,7 +24,7 @@ class Customer
     // put Customer into database
     public function putCustomer($username, $email, $password, $address, $fname, $birthdate)
     {
-        $this->con = Database::connect();
+        $this->con = Database\Database::connect();
         $sql = "INSERT INTO customers(name, email, password, address, thumb, birth_date) VALUE(:name, :email, :password, :address, :fname, :birthdate)";
         $this->statement = $this->con->prepare($sql);
         $this->statement->bindParam(":name", $username);
@@ -37,12 +39,12 @@ class Customer
     // for checking already exist
     public function getCustomerValid($Customer)
     {
-        $this->con = Database::connect();
+        $this->con = Database\Database::connect();
         $sql = "SELECT count(*) as total FROM customers WHERE name = :Customer";
         $this->statement = $this->con->prepare($sql);
         $this->statement->bindParam(":Customer", $Customer);
         if ($this->statement->execute()) {
-            $results = $this->statement->fetch(PDO::FETCH_ASSOC);
+            $results = $this->statement->fetch(\PDO::FETCH_ASSOC);
             return $results;
         }
     }
@@ -50,12 +52,12 @@ class Customer
     // for individual Customer
     public function getCustomer($email)
     {
-        $this->con = Database::connect();
+        $this->con = Database\Database::connect();
         $sql = "SELECT * FROM customers WHERE email = :email";
         $this->statement = $this->con->prepare($sql);
         $this->statement->bindParam(":email", $email);
         if ($this->statement->execute()) {
-            $results = $this->statement->fetch(PDO::FETCH_ASSOC);
+            $results = $this->statement->fetch(\PDO::FETCH_ASSOC);
             return $results;
         }
     }

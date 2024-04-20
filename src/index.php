@@ -1,7 +1,12 @@
 <?php
+
+use User\Controller\Customer\CustomerController;
+
 session_start();
 
-include_once "./user_controllers/customerController.php";
+include_once __DIR__ . "./user_controllers/customerController.php";
+
+// include_once ._DIR_. "./user_controllers/customerController.php";
 $customer_controller = new CustomerController();
 // $userEmail = $_SESSION['email'];
 
@@ -16,6 +21,18 @@ if (isset($_POST['logout'])) {
 
 ?>
 
+<!-- <h2 class="text-4xl">
+        Welcome <?php // echo $currentUser['name'] 
+                ?>
+    </h2> -->
+<!-- <form action="" method="post">
+        <button name="logout" class="btn btn-hover btn-focus effect-3">
+
+            logout
+
+        </button>
+    </form> -->
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -24,29 +41,19 @@ if (isset($_POST['logout'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Futu Admin Dashbord</title>
     <link rel="shortcut icon" href="../public/images/duck.svg" type="image/x-icon">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <link rel="stylesheet" href="../fontawesome/css/all.css">
     <link rel="stylesheet" href="../public/style.css">
 </head>
 
 <body class="dark">
 
-    <!-- <h2 class="text-4xl">
-        Welcome <?php // echo $currentUser['name'] 
-                ?>
-    </h2> -->
-    <!-- <form action="" method="post">
-        <button name="logout" class="btn btn-hover btn-focus effect-3">
 
-            logout
-
-        </button>
-    </form> -->
 
     <!-- header page -->
-    <header class="w-full h-screen header relative overflow-x-hidden bg-white text-black dark:bg-primary dark:text-white">
-
+    <header class="w-full h-screen relative overflow-x-hidden bg-white text-black dark:bg-primary dark:text-white">
         <!-- navbar -->
-        <nav class="flex justify-between items-center py-2 max-w-screen-xl mx-auto text-white">
+        <nav class="z-40 w-full h-[calc(100vh-90vh)] px-20 bg-slate-700 flex justify-between items-center pb-2 mx-auto text-white">
             <!-- navbar brand -->
             <a href="./" class="flex items-center">
                 <span class="ms-5 text-4xl font-semibold text-white">FUTU</span>
@@ -54,21 +61,30 @@ if (isset($_POST['logout'])) {
 
             <!-- navbar links -->
             <ul class="flex items-center">
-                <li class="relative px-12"><a class="text-lg" href="#">Home</a><span class="absolute -bottom-3 left-0 w-0 h-1 bg-blue-400 transition-all mx-auto duration-500"></span></li>
-                <li class="relative px-12"><a class="text-lg" href="#">Features</a><span class="absolute -bottom-3 left-0 w-0 h-1 bg-blue-400 transition-all mx-auto duration-500"></span></li>
-                <li class="relative px-12"><a class="text-lg" href="#">Products</a><span class="absolute -bottom-3 left-0 w-0 h-1 bg-blue-400 transition-all mx-auto duration-500"></span></li>
-                <li class="relative px-12"><a class="text-lg" href="#">About Us</a><span class="absolute -bottom-3 left-0 w-0 h-1 bg-blue-400 transition-all mx-auto duration-500"></span></li>
+                <li class="relative px-12"><a class="text-lg" href="./">Home</a><span class="absolute -bottom-3 left-0 w-0 h-1 bg-blue-400 transition-all mx-auto duration-500"></span></li>
+                <li class="relative px-12"><a class="text-lg" href="#features">Features</a><span class="absolute -bottom-3 left-0 w-0 h-1 bg-blue-400 transition-all mx-auto duration-500"></span></li>
+                <li class="relative px-12"><a class="text-lg" href="./products.php">Products</a><span class="absolute -bottom-3 left-0 w-0 h-1 bg-blue-400 transition-all mx-auto duration-500"></span></li>
+                <li class="relative px-12"><a class="text-lg" href="#about-us">About Us</a><span class="absolute -bottom-3 left-0 w-0 h-1 bg-blue-400 transition-all mx-auto duration-500"></span></li>
             </ul>
 
-            <button class="cart cursor-pointer flex justify-center items-center text-white bg-blue-500 hover:bg-blue-400 effect-3 rounded-full w-16 h-16 p-2">
+            <button class="cart cursor-pointer flex justify-center items-center text-white  effect-3 rounded-full w-16 h-16 p-2">
                 <svg class="w-8 h-8" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 0 0-3 3h15.75m-12.75-3h11.218c1.121-2.3 2.1-4.684 2.924-7.138a60.114 60.114 0 0 0-16.536-1.84M7.5 14.25 5.106 5.272M6 20.25a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Zm12.75 0a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Z" />
                 </svg>
             </button>
         </nav>
 
+        <div class="">
+            <div class="">
+                <!-- <spline-viewer class="" url="https://prod.spline.design/eOPmYsyAYnOn63wH/scene.splinecode"></spline-viewer> -->
+                <spline-viewer class="h-[calc(100vh-10vh)]" url="https://prod.spline.design/eOPmYsyAYnOn63wH/scene.splinecode"></spline-viewer>
+            </div>
+            <!-- Discount -->
+            <div></div>
+        </div>
+
         <!-- cart -->
-        <div class="sidebar-cart w-1/3 h-screen p-0 z-40 bg-gray-200 text-black absolute top-0 right-hide transition-all ease-in-out duration-1000">
+        <div class="sidebar-cart h-screen w-1/3 p-0 z-40 bg-gray-200 text-black absolute top-0 right-hide transition-all ease-in-out duration-1000">
             <!-- header part -->
             <div class="px-6 py-3 border-b border-white flex justify-between items-center">
                 <h2 class="text-xl font-semibold">Shopping Cart</h2>
@@ -80,7 +96,7 @@ if (isset($_POST['logout'])) {
             </div>
 
             <!-- body part -->
-            <div class="flex justify-center items-center w-full h-[calc(100%-18%)]">
+            <div class="cart-body flex justify-center items-center w-full h-[calc(100%-18%)]">
                 <h2 class="text-lg">No products in the cart</h2>
             </div>
 
@@ -91,15 +107,34 @@ if (isset($_POST['logout'])) {
         </div>
     </header>
 
+    <!-- Kit Kit Write Here -->
+    <section id="features" class="feature-page">
+
+
+        <!-- Favouites -->
+        <div></div>
+
+
+        <!-- Flash Sales -->
+        <div></div>
+
+
+        <!-- Just For You -->
+        <div></div>
+
+
+    </section>
+    <!-- End of Kit Kit -->
+
     <!-- about us page -->
     <section id="about-us" class="about max-w-screen-xl mx-auto py-6">
         <h2 class="text-center font-bold text-2xl my-5">What you can know about us!</h2>
         <div class="flex flex-col items-center h-full">
             <div class="w-full flex justify-between items-center gap-16">
-                <div class="w-1/3 object-cover">
+                <div data-aos="fade-right" data-aos-duration="500" class="w-1/3 object-cover">
                     <img src="../public/about.png" alt="about us image">
                 </div>
-                <div class="w-2/3 text-black py-16">
+                <div data-aos="fade-left" data-aos-duration="500" class="w-2/3 text-black py-16">
                     <div>
                         <h3 class="text-blue-600 text-xl font-semibold">Cultivating Excellence in E-commerce</h3>
                         <p class="mt-1 text-lg font-semibold">
@@ -121,7 +156,7 @@ if (isset($_POST['logout'])) {
                 </div>
             </div>
             <div class="w-full flex justify-between items-center gap-16 mt-2">
-                <div class="w-2/3 text-black py-16">
+                <div data-aos="fade-right" data-aos-duration="500" class="w-2/3 text-black py-16">
                     <div>
                         <h3 class="text-blue-600 text-xl font-semibold">Commitment to Quality</h3>
                         <p class="mt-1 text-lg font-semibold">
@@ -141,7 +176,7 @@ if (isset($_POST['logout'])) {
                         </p>
                     </div>
                 </div>
-                <div class="w-1/3 object-cover">
+                <div data-aos="fade-left" data-aos-duration="500" class="w-1/3 object-cover">
                     <img src="../public/about-2.png" alt="about us image">
                 </div>
             </div>
@@ -189,7 +224,15 @@ if (isset($_POST['logout'])) {
         </div>
     </section>
 
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script type="module" src="https://unpkg.com/@splinetool/viewer@1.0.91/build/spline-viewer.js"></script>
+    <script type="module" src="spline.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
     <script src="../public/user.js"></script>
+    <script>
+        AOS.init();
+    </script>
 </body>
 
 </html>

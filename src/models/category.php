@@ -1,5 +1,9 @@
 <?php
 
+namespace Admin\Model\Category;
+
+use Include\Database as Database;
+
 include_once "../../includes/db.php";
 
 class Category
@@ -11,11 +15,11 @@ class Category
     // get all category 
     public function getAllCategory()
     {
-        $this->con = Database::connect();
+        $this->con = Database\Database::connect();
         $sql = "SELECT * FROM categories";
         $this->statement = $this->con->prepare($sql);
         if ($this->statement->execute()) {
-            $results = $this->statement->fetchAll(PDO::FETCH_ASSOC);
+            $results = $this->statement->fetchAll(\PDO::FETCH_ASSOC);
             return $results;
         }
     }
@@ -23,7 +27,7 @@ class Category
     // put category into database
     public function putCategory($category)
     {
-        $this->con = Database::connect();
+        $this->con = Database\Database::connect();
         $sql = "INSERT INTO categories(name) VALUE(:category)";
         $this->statement = $this->con->prepare($sql);
         $this->statement->bindParam(":category", $category);
@@ -33,12 +37,12 @@ class Category
     // for checking already exist
     public function getCategoryValid($category)
     {
-        $this->con = Database::connect();
+        $this->con = Database\Database::connect();
         $sql = "SELECT count(*) as total FROM categories WHERE name = :category";
         $this->statement = $this->con->prepare($sql);
         $this->statement->bindParam(":category", $category);
         if ($this->statement->execute()) {
-            $results = $this->statement->fetch(PDO::FETCH_ASSOC);
+            $results = $this->statement->fetch(\PDO::FETCH_ASSOC);
             return $results;
         }
     }
@@ -46,12 +50,12 @@ class Category
     // for individual category
     public function getCategory($category)
     {
-        $this->con = Database::connect();
+        $this->con = Database\Database::connect();
         $sql = "SELECT * FROM categories WHERE name = :category";
         $this->statement = $this->con->prepare($sql);
         $this->statement->bindParam(":category", $category);
         if ($this->statement->execute()) {
-            $results = $this->statement->fetch(PDO::FETCH_ASSOC);
+            $results = $this->statement->fetch(\PDO::FETCH_ASSOC);
             return $results;
         }
     }
@@ -61,11 +65,11 @@ class Category
     // get all subcategory
     public function getAllSubCategory()
     {
-        $this->con = Database::connect();
+        $this->con = Database\Database::connect();
         $sql = "SELECT * FROM sub_categories";
         $this->statement = $this->con->prepare($sql);
         if ($this->statement->execute()) {
-            $results = $this->statement->fetchAll(PDO::FETCH_ASSOC);
+            $results = $this->statement->fetchAll(\PDO::FETCH_ASSOC);
             return $results;
         }
     }
@@ -73,7 +77,7 @@ class Category
     // put subcategory into database
     public function putSubCategory($subcategory, $category_id)
     {
-        $this->con = Database::connect();
+        $this->con = Database\Database::connect();
         $sql = "INSERT INTO sub_categories(name, category_id) VALUES(:subcategory, :id)";
         $this->statement = $this->con->prepare($sql);
         $this->statement->bindParam(":subcategory", $subcategory);
@@ -84,12 +88,12 @@ class Category
     // for checking already exist
     public function getSubCategoryValid($subcategory)
     {
-        $this->con = Database::connect();
+        $this->con = Database\Database::connect();
         $sql = "SELECT count(*) as total FROM sub_categories WHERE name = :subcategory";
         $this->statement = $this->con->prepare($sql);
         $this->statement->bindParam(":subcategory", $subcategory);
         if ($this->statement->execute()) {
-            $results = $this->statement->fetch(PDO::FETCH_ASSOC);
+            $results = $this->statement->fetch(\PDO::FETCH_ASSOC);
             return $results;
         }
     }
@@ -97,12 +101,12 @@ class Category
     // for individual subcategory
     public function getSubCategory($subcategory)
     {
-        $this->con = Database::connect();
+        $this->con = Database\Database::connect();
         $sql = "SELECT * FROM sub_categories WHERE name = :subcategory";
         $this->statement = $this->con->prepare($sql);
         $this->statement->bindParam(":subcategory", $subcategory);
         if ($this->statement->execute()) {
-            $results = $this->statement->fetch(PDO::FETCH_ASSOC);
+            $results = $this->statement->fetch(\PDO::FETCH_ASSOC);
             return $results;
         }
     }
@@ -110,13 +114,13 @@ class Category
     // get subcategory by category
     public function getSubcategoriesByCategory($id)
     {
-        $this->con = Database::connect();
+        $this->con = Database\Database::connect();
         $sql = "SELECT * FROM sub_categories WHERE category_id IN 
                 (SELECT id FROM categories WHERE id = :id)";
         $this->statement = $this->con->prepare($sql);
         $this->statement->bindParam(":id", $id);
         if ($this->statement->execute()) {
-            $results = $this->statement->fetchAll(PDO::FETCH_ASSOC);
+            $results = $this->statement->fetchAll(\PDO::FETCH_ASSOC);
             return $results;
         }
     }
@@ -124,12 +128,12 @@ class Category
     // For Table
     public function getAllSubCategoryAndCategory()
     {
-        $this->con = Database::connect();
+        $this->con = Database\Database::connect();
         $sql = "SELECT sub_categories.*, categories.name as category_name FROM sub_categories JOIN categories
         ON sub_categories.category_id = categories.id";
         $this->statement = $this->con->prepare($sql);
         if ($this->statement->execute()) {
-            $results = $this->statement->fetchAll(PDO::FETCH_ASSOC);
+            $results = $this->statement->fetchAll(\PDO::FETCH_ASSOC);
             return $results;
         }
     }

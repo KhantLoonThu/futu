@@ -1,6 +1,10 @@
 <?php
 
+namespace User\Controller\Customer;
+
 include_once "./user_models/customer.php";
+
+use User\Model\Customer\Customer;
 
 class CustomerController
 {

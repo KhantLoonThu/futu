@@ -1,9 +1,14 @@
 <?php
 session_start();
+
+use Admin\Controller\Category as CategoryController;
+use Admin\Controller\Product as ProductController;
+
 include_once "../../controllers/categoryController.php";
 include_once "../../controllers/productController.php";
-$category_controller = new CategoryController();
-$product_controller = new ProductController();
+
+$category_controller = new CategoryController\CategoryController();
+$product_controller = new ProductController\ProductController();
 
 if (isset($_POST['add'])) {
     $error = false;
@@ -26,36 +31,7 @@ if (isset($_POST['add'])) {
 
     $description = $_POST['description'];
 
-    // image
-    if (!empty($_FILES['image'])) {
-        $filename = $_FILES['image']['name'];
-        $filetypename = $_FILES['image']['type'];
-        $filetmp = $_FILES['image']['tmp_name'];
-        $fileerror = $_FILES['image']['error'];
-        $filesize = $_FILES['image']['size'];
-        $filetypes = ['jpeg', 'jpg', 'png', 'webp', 'svg', 'docs'];
-        $fileExtArray = (explode(".", $filename));
-        $fileExt = end($fileExtArray);
-        $fname = time() . $filename;
 
-        if ($fileerror == 0) {
-            if (in_array($fileExt, $filetypes)) {
-                if ($filesize < 2000000) {
-                    $fname = uniqid() . "." . $fileExt;
-                    move_uploaded_file($filetmp, "../../../public/images/" . $fname);
-                } else {
-                    echo "Your file is too big";
-                }
-            } else {
-                echo "Your file extension is not allowed";
-            }
-        } else {
-            "You got an error";
-        }
-    } else {
-        $error = true;
-        $image_error = "Please fill image";
-    }
 
     // category
     if (!empty($_POST['category'])) {
@@ -74,7 +50,39 @@ if (isset($_POST['add'])) {
     }
 
     if (!$error) {
-        $valid = $product_controller->getProductValid($name);
+
+        // image
+        if (!empty($_FILES['image'])) {
+            $filename = $_FILES['image']['name'];
+            $filetypename = $_FILES['image']['type'];
+            $filetmp = $_FILES['image']['tmp_name'];
+            $fileerror = $_FILES['image']['error'];
+            $filesize = $_FILES['image']['size'];
+            $filetypes = ['jpeg', 'jpg', 'png', 'webp', 'svg', 'docs'];
+            $fileExtArray = (explode(".", $filename));
+            $fileExt = end($fileExtArray);
+            $fname = time() . $filename;
+
+            if ($fileerror == 0) {
+                if (in_array($fileExt, $filetypes)) {
+                    if ($filesize < 2000000) {
+                        $fname = uniqid() . "." . $fileExt;
+                        move_uploaded_file($filetmp, "../../../public/images/" . $fname);
+                    } else {
+                        echo "Your file is too big";
+                    }
+                } else {
+                    echo "Your file extension is not allowed";
+                }
+            } else {
+                "You got an error";
+            }
+        } else {
+            $error = true;
+            $image_error = "Please fill image";
+        }
+
+        $valid = $product_controller->getProductValid($name, $subcategory);
 
         if ($valid['total'] == 0) {
             $product_controller->putProduct($name, $price, $fname, $description, $category, $subcategory);

@@ -1,6 +1,10 @@
 <?php
 
-include_once "../../includes/db.php";
+namespace Admin\Model\Product;
+
+use Include\Database\Database;
+
+require_once __DIR__ . "../../includes/db.php";
 
 class Product
 {
@@ -15,7 +19,7 @@ class Product
         $sql = "SELECT * FROM products";
         $this->statement = $this->con->prepare($sql);
         if ($this->statement->execute()) {
-            $results = $this->statement->fetchAll(PDO::FETCH_ASSOC);
+            $results = $this->statement->fetchAll(\PDO::FETCH_ASSOC);
             return $results;
         }
     }
@@ -28,20 +32,21 @@ class Product
         $this->statement = $this->con->prepare($sql);
         $this->statement->bindParam(":product", $product);
         if ($this->statement->execute()) {
-            $results = $this->statement->fetch(PDO::FETCH_ASSOC);
+            $results = $this->statement->fetch(\PDO::FETCH_ASSOC);
             return $results;
         }
     }
 
     // for checking already exist
-    public function getProductValid($product)
+    public function getProductValid($product, $subcategoryId)
     {
         $this->con = Database::connect();
-        $sql = "SELECT count(*) as total FROM products WHERE name = :product";
+        $sql = "SELECT count(*) as total FROM products WHERE name = :product AND subcategory_id = :subid";
         $this->statement = $this->con->prepare($sql);
         $this->statement->bindParam(":product", $product);
+        $this->statement->bindParam(":subid", $subcategoryId);
         if ($this->statement->execute()) {
-            $results = $this->statement->fetch(PDO::FETCH_ASSOC);
+            $results = $this->statement->fetch(\PDO::FETCH_ASSOC);
             return $results;
         }
     }

@@ -8,7 +8,7 @@
 }
 
 .input {
-  @apply block border-2 border-rose-700 rounded-lg py-3 px-4 mt-3;
+  @apply block border-2 border-rose-700 py-3 px-4 mt-3;
 }
 
 .input-focus {
@@ -54,7 +54,7 @@ li:hover span {
 }
 
 .header {
-  background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
+  background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)),
     url("../public/cart.png");
   background-repeat: no-repeat;
   background-size: cover;
@@ -73,4 +73,51 @@ li:hover span {
   background-clip: text;
   /* Ensure text remains visible on browsers that don't support background-clip */
   color: transparent;
+}
+
+.message-box::before {
+  position: absolute;
+  content: "";
+  width: 15px;
+  height: 15px;
+  left: 97%;
+  bottom: 30%;
+  transform: translate(-50%) rotate(45deg);
+  background: rgb(31 41 55);
+}
+
+/* pagination */
+#pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+}
+
+#pagination button {
+  border-radius: 5px;
+  margin: 0 5px;
+  background-color: #3498db; /* Default background color */
+  color: white; /* Default text color */
+  padding: 5px 10px; /* Adjust padding as needed */
+  text-decoration: none; /* Remove underline */
+}
+
+#pagination button.active {
+  background-color: #fff;
+  color: #3498db;
+  border-color: #3498db;
+}
+
+.cart .totalCartItem {
+  background: #3498db;
+  padding: 1px 8px;
+  border-radius: 50%;
+  position: absolute;
+  bottom: 8px;
+  right: 5px;
+}
+
+.cart-body {
+  overflow-y: auto;
 }

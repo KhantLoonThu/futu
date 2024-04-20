@@ -1,6 +1,10 @@
 <?php
 
+namespace Admin\Controller\Category;
+
 include_once "../../models/category.php";
+
+use Admin\Model\Category as CategoryModel;
 
 class CategoryController
 {
@@ -8,7 +12,7 @@ class CategoryController
 
     public function __construct()
     {
-        $this->category = new Category();
+        $this->category = new CategoryModel\Category();
     }
 
     # for category

@@ -9,6 +9,7 @@ $(doc).ready(function () {
             url: "productResponse.php",
             data: { category: selectedCategory },
             success: function (response) {
+                console.log(response)
                 let data = JSON.parse(response);
 
                 subcategorySelect.empty();
