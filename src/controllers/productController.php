@@ -1,5 +1,9 @@
 <?php
 
+namespace Admin\Controller\Product;
+
+use Admin\Model\Product\Product;
+
 include_once "../../models/product.php";
 
 class ProductController
@@ -15,9 +19,9 @@ class ProductController
         return $this->product->getAllProducts();
     }
 
-    public function getProductValid($name)
+    public function getProductValid($name, $subid)
     {
-        return $this->product->getProductValid($name);
+        return $this->product->getProductValid($name, $subid);
     }
 
     public function getProduct($name)

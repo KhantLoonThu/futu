@@ -1,7 +1,10 @@
 <?php
 
+use Admin\Controller\Category as CategoryController;
+
 include_once "../../controllers/categoryController.php";
-$category_controller = new CategoryController();
+
+$category_controller = new CategoryController\CategoryController();
 
 if (isset($_POST['add'])) {
 
